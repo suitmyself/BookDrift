@@ -20,7 +20,7 @@ if (session.isNew() || userID == null)
 <%
 try {
 	//Query posts
-	String sql = "SELECT * FROM `t_sns`.`post`"
+	String sql = "SELECT * FROM `book_drift`.`post`"
 				+ " WHERE re_id = -1"
 				+ " AND ("
 					+ "username = '" + userID + "'"

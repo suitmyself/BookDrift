@@ -3,8 +3,8 @@
 	String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 	String DB_URL = "jdbc:mysql://localhost/book_drift?useUnicode=true&characterEncoding=utf8";
 
-	String USER = "sns_admin";
-	String PASS = "CalRybMid3";
+	String USER = "root";
+	String PASS = "wei13755030514";
 	Connection conn = null;
 	Statement stmt = null;
 
