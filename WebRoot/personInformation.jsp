@@ -22,58 +22,58 @@
   <head>
     <base href="<%=basePath%>">
     <title>用户界面</title>
-    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="description" content="user.jsp">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css">
-.userID,.country,.email,.phone,.name,.university,.school,.major
-{
-	padding: 7px 10px;
-	width: 233px;
-	height: 35px;
-	line-height: 25px;
-	border-radius: 1px;
-	margin-right: 7px;
-	border: 1px solid #BDC7D8;
-}
-.submit
-{
-	width: 100px;
-	height: 43px;
-	margin: 10px 10px 10px 10px;
-	display: block;
-	cursor: pointer;
-	color: blue;
-	font-size: 18px;
-	font-weight: 700;
-	font-family: "微软雅黑";
-	border: 1px solid #3B6E22;
-	border-radius: 3px;
-	background-color:#00FF00;
-	position: relative;
-	right: 200 px;
-}
-td
-{
-	padding-bottom: 10px;
-	padding-top:10px;
-}
-.personInf
-{
-	width: 80%;
-	height: 1000px;
-	float: left;
-	background-color: #D9D9D9;
-	border-radius: 8px;
-	margin-left: 15px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-</style>
+	<style type="text/css">
+	
+	.userID,.country,.email,.phone,.name,.university,.school,.major
+	{
+		padding: 7px 10px;
+		width: 233px;
+		height: 35px;
+		line-height: 25px;
+		border-radius: 1px;
+		margin-right: 7px;
+		border: 1px solid #BDC7D8;
+	}
+	.submit
+	{
+		width: 100px;
+		height: 43px;
+		margin: 10px 10px 10px 10px;
+		display: block;
+		cursor: pointer;
+		color: blue;
+		font-size: 18px;
+		font-weight: 700;
+		font-family: "微软雅黑";
+		border: 1px solid #3B6E22;
+		border-radius: 3px;
+		background-color:#00FF00;
+		position: relative;
+		right: 200 px;
+	}
+	td
+	{
+		padding-bottom: 10px;
+		padding-top:10px;
+	}
+	.personInf
+	{
+		width: 80%;
+		height: 1000px;
+		float: left;
+		background-color: #D9D9D9;
+		border-radius: 8px;
+		margin-left: 15px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	
+	</style>
 </head>
 
 <body>
@@ -108,8 +108,8 @@ td
  			Calendar cal = Calendar.getInstance();
             cal.setTime(birthday);
             int day = cal.get(Calendar.DAY_OF_MONTH); //日
-			int mouth = cal.get(Calendar.MONTH) + 1; //月(从0开始, 一般加1，实际是否 Calendar 里面常量的值决定的)
-			int year = cal.get(Calendar.YEAR); //年
+			int mouth = cal.get(Calendar.MONTH) + 1;  //月(从0开始, 一般加1，实际是否 Calendar 里面常量的值决定的)
+			int year = cal.get(Calendar.YEAR);        //年
 
 			%>
 			
@@ -205,40 +205,40 @@ td
 		</form>
 	</center>
 	</div>
-				<script type="text/javascript">
-					
-					for(var i=0; i<document.getElementById("year_").length;i++)
-					{
-						//alert("已经被执行");
-						if(document.getElementById("year_").options[i].text == <%= year %>)
-						{
-							//alert("year已经被执行");
-							document.getElementById("year_").options[i].selected = true;
-							break;
-						}
-					}
-					
-					for(var i=0; i<document.getElementById("mouth_").length;i++)
-					{
-						//alert("已经被执行");
-						if(document.getElementById("mouth_").options[i].text == "<%= mouth %>")
-						{
-							document.getElementById("mouth_").options[i].selected = true;
-							break;
-						}
-					}
-					
-					for(var i=0; i<document.getElementById("day_").length;i++)
-					{
-						if(document.getElementById("day_").options[i].text == "<%= day %>")
-						{
-							document.getElementById("day_").options[i].selected = true;
-							break;
-						}
-					}
-					
-				</script>
-			<% 
+	<script type="text/javascript">
+		
+		for(var i=0; i<document.getElementById("year_").length;i++)
+		{
+			//alert("已经被执行");
+			if(document.getElementById("year_").options[i].text == <%= year %>)
+			{
+				//alert("year已经被执行");
+				document.getElementById("year_").options[i].selected = true;
+				break;
+			}
+		}
+		
+		for(var i=0; i<document.getElementById("mouth_").length;i++)
+		{
+			//alert("已经被执行");
+			if(document.getElementById("mouth_").options[i].text == "<%= mouth %>")
+			{
+				document.getElementById("mouth_").options[i].selected = true;
+				break;
+			}
+		}
+		
+		for(var i=0; i<document.getElementById("day_").length;i++)
+		{
+			if(document.getElementById("day_").options[i].text == "<%= day %>")
+			{
+				document.getElementById("day_").options[i].selected = true;
+				break;
+			}
+		}
+		
+	</script>
+		<% 
 			
 		}
 		else
