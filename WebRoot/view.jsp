@@ -20,7 +20,7 @@ if (session.isNew() || userID == null)
 <%
 try {
 	//Query posts
-	String sql = "SELECT * FROM `book_drift`.`post`"
+	String sql = "SELECT * FROM post"
 				+ " WHERE re_id = -1"
 				+ " AND ("
 					+ "username = '" + userID + "'"
@@ -51,7 +51,7 @@ try {
 						Connection conn2 = DriverManager.getConnection(DB_URL,USER,PASS);
 						Statement stmt2 = conn2.createStatement();
 						stmt2.executeQuery("SET NAMES UTF8");
-						String sql2 = "SELECT * FROM `t_sns`.`post`"
+						String sql2 = "SELECT * FROM post"
 								+ " WHERE re_id = " + post_id
 								+ " ORDER BY ts DESC";
 
