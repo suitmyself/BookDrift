@@ -16,7 +16,7 @@ if (words != null) {
 
 <%
 	try {
-	String sql = "INSERT INTO  `t_sns`.`post` (re_id, username, content)"
+	String sql = "INSERT INTO  `book_drift`.`post` (re_id, username, content)"
 		+ " VALUES (-1,'" + userID + "','" + content + "')";
 	System.out.println(sql);
 	stmt.execute(sql);
