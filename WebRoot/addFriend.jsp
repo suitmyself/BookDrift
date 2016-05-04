@@ -133,7 +133,8 @@
     	{       // 判断对象状态
     		if (http_request.status == 200) 
        		{    // 信息已经成功返回，开始处理信息
-       			 //alert(http_request.responseText.replace(/(^\s*)(\s*$)/g,""));        //需注意，利用这种方式可以查看返回的内容，alert()是一个用来调试的很好的函数，
+       			 //alert(http_request.responseText.replace(/(^\s*)(\s*$)/g,""));        
+       			 //需注意，利用这种方式可以查看返回的内容，alert()是一个用来调试的很好的函数，
         		 var message=http_request.responseText;
         		 
         		 var i=message.indexOf("success");

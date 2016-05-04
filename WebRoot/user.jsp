@@ -27,8 +27,8 @@
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="description" content="user.jsp">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
 	<style type="text/css">
-
 	.PostButton, .commet {
 		height: 30px;
 		margin-left: 10px;

@@ -23,7 +23,8 @@ if (words != null) {
 
 	conn.close();
 	stmt.close();
-	} finally {
+	} 
+	finally{
 	}
 
 }

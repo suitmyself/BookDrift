@@ -38,8 +38,7 @@
 		padding-top: 20px;
 		padding-bottom: 20px;
 	}
-	</style>
-	<style type="text/css">
+
     table
     {
   		font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -85,8 +84,8 @@
 		/*float: right;*/
 		/*margin-right: 29px;*/
   	}
-
     </style>
+    
 	<script type="text/javascript">
 	function deleteFriend(thisButton) 
 	{
