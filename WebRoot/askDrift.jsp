@@ -4,31 +4,27 @@
 	response.setCharacterEncoding("UTF-8");
 	request.setCharacterEncoding("UTF-8");
 
-	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-<%
 	String userID = (String) session.getAttribute("userID");
 	if (session.isNew() || userID == null)
 	{
 		response.sendRedirect("login.jsp");
-		//System.out.println("转向到登录页面");
 		return;
 	}
 %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    <title>用户界面</title>
-    
+<head>
+    <title>个人分享</title>    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="description" content="user.jsp">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	
-	<style type="text/css">
+</head>	
+
+<style type="text/css">
 	.PostButton, .commet {
 	   
 		height: 30px;
@@ -88,6 +84,16 @@
 		padding-top: 10px;
 		padding-bottom: 10px;
 		margin-bottom:15px;
+		border: 1px solid #E1E1E1;
+	}
+	
+	#post_title, #book_title {
+		width: 90%;
+		height:30px;
+		margin-left: 30px;
+		margin-top: 20px;
+		padding-top: 3px;
+		padding-bottom: 3px;
 		border: 1px solid #E1E1E1;
 	}
 
@@ -195,11 +201,10 @@
 		margin-top:5px;
 	}
 
-	</style>
+</style>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 		updatePostBoard();
-
 		setInterval("updatePostBoard();updateSystemMessage();", 3000);
 
 		function updatePostBoard() {
@@ -211,27 +216,25 @@
 				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
 			}
 			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					document.getElementById("dynamics").innerHTML=xmlhttp.responseText;
-				}
-			};
-			xmlhttp.open("GET", "view.jsp?t=" + Math.random(), true);
+											if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+												document.getElementById("dynamics").innerHTML=xmlhttp.responseText;
+										 };
+			xmlhttp.open("GET", "askDriftReturn.jsp?t=" + Math.random(), true);
 			xmlhttp.send();
 		}
 
 		function submitPost() {
 			var myPost = document.getElementById("myPost");
-			var strInput = myPost.value;
-			if (strInput != "") {
+			var post_content = myPost.value;
+			var book_title = document.getElementById("book_title");
+			book_title = book_title.value;
+			
+			if (post_content != "") {
 				var xmlhttp;
-				if (window.XMLHttpRequest) {
-					// code for IE7+, Firefox, Chrome, Opera, Safari
+				if (window.XMLHttpRequest) 
 					xmlhttp = new XMLHttpRequest();
-				}
-				else {
-					// code for IE6, IE5
+				else 
 					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
 
 				if (xmlhttp != null) {
 					xmlhttp.onreadystatechange = function() {
@@ -239,73 +242,49 @@
 							updatePostBoard();
 						}
 					};
-					strInput = "submitPost.jsp?words="+strInput;
-					// fixme why encodeURI twice
-					strInput = encodeURI(strInput);
-					strInput = encodeURI(strInput);
-					xmlhttp.open("POST", strInput, true);
+					var send_content = "submitAskDrift.jsp?book_title="+book_title+"&post_content="+post_content;
+					//invoke encodeURI is necessary
+					send_content = encodeURI(send_content);
+					send_content = encodeURI(send_content);
+					xmlhttp.open("POST", send_content, true);
 					xmlhttp.send();
 					
-					document.getElementById("myPost").value= "闲来无事闷得慌，来一发状态吧";
+					document.getElementById("myPost").value= "想要的书找不到，来求漂吧";
 					document.getElementById("myPost").style.color= "#C8C8C8";
 					document.getElementById("myPost").style.borderColor="#E1E1E1";
+					
+					document.getElementById("book_title").value= "书名";
+					document.getElementById("book_title").style.color= "#C8C8C8";
+					document.getElementById("book_title").style.borderColor="#E1E1E1";
 				}
 			} else {
 				alert("请输入内容！");
 			}
 		}
 		
-		function toggleReplyInput(postID) {
-			if (document.getElementById("IR_" + postID).style.display == "none") {
-				document.getElementById("IR_" + postID).style.display = "block";
-			}
-			else {
-				document.getElementById("IR_" + postID).style.display = "none";
+		function postBookTitleOnblur(text_)
+		{
+			if(text_.value=="")
+			{	
+				text_.value= "书名";
+				text_.style.color= "#C8C8C8";
+				text_.style.borderColor="#E1E1E1";
 			}
 		}
 		
-		function onfocusFunc(postID)
+		function postBookTitleOnfocus(text_)
 		{
-			document.getElementById("button" + postID).style.display="inline";
-			document.getElementById("textRe" + postID).style.height= "60px";
-			if(document.getElementById("textRe" + postID).value.substring(0,5)=="来句评论吧")
-			{
-				document.getElementById("textRe" + postID).value= "";
-			}
-			document.getElementById("textRe" + postID).style.color="black";
-			//document.getElementById("textRe" + postID).value="";
-			//document.getElementById("textRe" + postID).blur();
-			//document.getElementById("textRe" + postID).focus();
-			//document.getElementById("textRe" + postID).style.textIndent="0px";
-			//var obj = event.srcElement;    
-			//var txt =obj.createTextRange();    
-			//txt.moveStart('character',obj.value.length);    
-			//txt.collapse(true);    
-			//txt.select();  
-			
-		}
-		
-		function onblurFunc(postID)
-		{
-			if(document.getElementById("textRe" + postID).value=="")
-			{
-				document.getElementById("textRe" + postID).style.height= "30px";
-				document.getElementById("button" + postID).style.display="none";
-				//alert("|"+document.getElementById("textRe" + postID).value+"|");
-
-	
-				document.getElementById("textRe" + postID).value= "来句评论吧";
-		
-				document.getElementById("textRe" + postID).style.color= "#C8C8C8";
-			}
+			if(text_.value=="书名")
+				text_.value= "";
+			text_.style.color="black";
+			text_.style.borderColor="green";
 		}
 		
 		function postOnblur(text_)
 		{
-			var message = text_.value;
 			if(text_.value=="")
 			{
-				text_.value= "闲来无事闷得慌，来一发状态吧";
+				text_.value= "想要的书找不到，来求漂吧";
 			
 				text_.style.color= "#C8C8C8";
 				text_.style.borderColor="#E1E1E1";
@@ -314,43 +293,12 @@
 		
 		function postOnfocus(text_)
 		{
-			if(text_.value.substring(0,14)=="闲来无事闷得慌，来一发状态吧")
+			if(text_.value.substring(0,14)=="想要的书找不到，来求漂吧")
 				text_.value= "";
 			text_.style.color="black";
 			text_.style.borderColor="green";
 		}
 
-		function submitReply(postID) {
-			var textRe = document.getElementById("textRe" + postID);
-			var strInput = textRe.value;
-			if (strInput != "") {
-				var xmlhttp;
-				if (window.XMLHttpRequest) {
-					// code for IE7+, Firefox, Chrome, Opera, Safari
-					xmlhttp = new XMLHttpRequest();
-				}
-				else {
-					// code for IE6, IE5
-					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-				}
-				if (xmlhttp != null) {
-					xmlhttp.onreadystatechange = function() {
-						if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-							updatePostBoard();
-						}
-					};
-					strInput = "submitReply.jsp?words="+strInput+"&postID="+postID;
-					// fixme why encodeURI twice
-					strInput = encodeURI(strInput);
-					strInput = encodeURI(strInput);
-					xmlhttp.open("POST", strInput, true);
-					xmlhttp.send();
-					document.getElementById("textRe" + postID).value="";
-				}
-			} else {
-				alert("请输入内容！");
-			}
-		}
 		var autoTextarea = function (elem, extra, maxHeight) 
 		{
 	        extra = extra || 0;
@@ -415,13 +363,14 @@
 	        addEvent('focus', change);
 	        change();
 		};
-	</script>
-</head>
+</script>
+
 <body style="background-color:#D9D9D9">
     <%@ include file="navigator.jsp" %>
   	<%@ include file="module.jsp" %>
 	<div class="postPaid">
-		<textarea id="myPost" onfocus="postOnfocus(this)" onblur="postOnblur(this)" style="color:#C8C8C8">闲来无事闷得慌，来一发状态吧</textarea>
+	    <textarea id="book_title" onfocus="postBookTitleOnfocus(this)" onblur="postBookTitleOnblur(this)" style="color:#C8C8C8">书名</textarea>
+		<textarea id="myPost" onfocus="postOnfocus(this)" onblur="postOnblur(this)" style="color:#C8C8C8">想要的书找不到，来求漂吧</textarea>
 		<script> 
         	var text = document.getElementById("myPost");
        	 	autoTextarea(text);// 调用
@@ -433,3 +382,4 @@
 
 </body>
 </html>
+	

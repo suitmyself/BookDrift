@@ -15,14 +15,15 @@ if (words != null) {
 <%@ include file="accessDB.jsp" %>
 
 <%
-	try {
-	String sql = "INSERT INTO  `book_drift`.`post` (re_id, username, content)"
-		+ " VALUES (-1,'" + userID + "','" + content + "')";
-	System.out.println(sql);
-	stmt.execute(sql);
-
-	conn.close();
-	stmt.close();
+	try 
+	{
+		String sql = "INSERT INTO  post (re_id, username, content)"
+			+ " VALUES (-1,'" + userID + "','" + content + "')";
+		System.out.println(sql);
+		stmt.execute(sql);
+	
+		conn.close();
+		stmt.close();
 	} 
 	finally{
 	}

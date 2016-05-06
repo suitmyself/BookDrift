@@ -14,7 +14,6 @@
   		border-radius:8px;
   		background-color:#505050;
   		width:15%;
-  		/*height:700px;*/
   		float:left;
   		padding:20px;
   		line-height:50px;
@@ -27,8 +26,44 @@
 		margin-top:0;
 		width:100%;  
 		list-style-type:none;
-		padding:0
+		padding:0;
   	}
+  	
+  	.functionBlock ul ul
+  	{
+  		visibility:hidden;
+  	}
+  	
+  	.functionBlock li.user_center ul
+  	{
+  		position:absolute;
+  		background-color:#505050;
+  		top:123px;
+  		left:205px;
+  		width:160px;
+  		z-index:10; 
+  	}
+  	
+  	.functionBlock li.user_center:hover ul
+  	{
+  		visibility:visible;
+  	}
+  	
+  	.functionBlock li.friend_function ul
+  	{
+  		position:absolute;
+  		background-color:#505050;
+  		top:223px;
+  		left:205px;
+  		width:160px;
+  		z-index:10; 
+  	}
+  	
+  	.functionBlock li.friend_function:hover ul
+  	{
+  		visibility:visible;
+  	}  	
+  	
   	.functionBlock li
   	{
     	display:block;
@@ -49,6 +84,7 @@
   {
 		background-color:#F00;
   }
+  
   .signature_
   {
   	/*color:red;*/
@@ -70,7 +106,7 @@
         		"text",
         		showFeedbackInfo_sys_mes);
         //alert("docheck");
- }
+  }
 
 	function showFeedbackInfo_sys_mes() 
 	{
@@ -99,89 +135,80 @@
   </head>
 
   <div class="functionBlock">
-  	<span style="color:white">功能模块</span>
+  	 <span style="color:white">功能模块</span>
+  	
  	 <ul>
- 	 	<li> <a href="user.jsp">个人中心</a> 
- 	 	<li> <a href="changePassword.jsp">修改密码</a>
-  	 	<li> <a href="personInformation.jsp">个人信息</a>
-  	 	<li> <a href="addFriend.jsp">添加好友</a>
-  	 	<li> <a href="friendManager.jsp">好友管理</a>
-  	 	<li> <a href="systemMessage.jsp" >系统消息<span style="color:red;" id="system_message_link"></span></a>
+ 	    <li class="user_center"> <a href="user.jsp">个人中心</a> 
+ 	    	<ul>
+ 	 			<li> <a href="changePassword.jsp">修改密码</a> </li>
+  	 			<li> <a href="personInformation.jsp">个人信息</a> </li>
+  	 		</ul>
+  	 	</li>
+  	 	<li> <a href="user.jsp">发状态</a></li>
+  	 	<li class="friend_function"> <a href="#" onclick="return false">好友</a>
+  	 		<ul>
+  	 			<li> <a href="addFriend.jsp">添加好友</a> </li>
+  	 			<li> <a href="friendManager.jsp">好友管理</a> </li>
+  	 		</ul>
+  	 	</li>
   	 	
+  	 	<li class="ask_drift"> <a href="askDrift.jsp">求漂</a></li>
+  	 	
+  	 	<li> <a href="driftBook.jsp">放漂</a> </li>
+  	 	
+  	 	<li> <a href="bookShelf.jsp" >个人书架</a></li>
+  	 	
+  	 	<li> <a href="personalShare.jsp" >个人分享</a></li>
+  	 	
+  	 	<li> <a href="readHistory.jsp">读者足迹</a> </li>
+  	 	
+  	 	
+  	 	<li> 
+  	 		<a href="systemMessage.jsp" >系统消息<span style="color:red;" id="system_message_link"></span></a>
+  	 	</li>
   	 </ul>
   	 <hr>
   	 <div class="signature_">
   	 	<h3>签名档</h3>
   	 	<div class="sig_content">
   	 	
-  	<%@ include file="accessDB.jsp" %>
-  	<% 
-	try
-	{
-		String sql = "SELECT * FROM user_info where username='"+session.getAttribute("userID")+"'";
-		ResultSet rs = stmt.executeQuery(sql);
-		
-		//STEP 5: Extract data from result set
-		if(rs.next()) 
-		{
-			out.print(rs.getString("signature"));
-		}
-		else
-		{
-			out.println("<h2>用户名不存在,可能登陆超时</h2>");
-	   		out.println("<p>3秒后返回<a href='login.jsp' >登陆</a>页面！</p>");
-	   	    String content=3+";URL="+"login.jsp";
-	    	response.setHeader("REFRESH",content);
-		}
-		//STEP 6: Clean-up environment
-		//rs.close();
-		//stmt.close();
-		//conn.close();
-	}
-	catch(SQLException se)
-	{
-		//Handle errors for JDBC
-		out.println("<p>sorry,数据库错误</P>");
-		se.printStackTrace();
-	}
-	catch(Exception e)
-	{
-		//Handle errors for Class.forName
-		out.println("<p>sorry,数据库错误</P>");
-		e.printStackTrace();
-	}
-	/*
-	finally
-	{
-		//finally block used to close resources
-		try
-		{
-			
-			if(stmt!=null)
+	  	<%@ include file="accessDB.jsp" %>
+	  	<% 
+			try
 			{
-				stmt.close();
+				String sql = "SELECT * FROM user_info where username='"+session.getAttribute("userID")+"'";
+				ResultSet rs = stmt.executeQuery(sql);
+				
+				//STEP 5: Extract data from result set
+				if(rs.next()) 
+				{
+					out.print(rs.getString("signature"));
+				}
+				else
+				{
+					out.println("<h2>用户名不存在,可能登陆超时</h2>");
+			   		out.println("<p>3秒后返回<a href='login.jsp' >登陆</a>页面！</p>");
+			   	    String content=3+";URL="+"login.jsp";
+			    	response.setHeader("REFRESH",content);
+				}
+				//STEP 6: Clean-up environment
+				//rs.close();
+				//stmt.close();
+				//conn.close();
 			}
-			
-		}
-		catch(SQLException se2)
-		{
-			out.println("<p>sorry,数据库错误</P>");
-		}// nothing we can do
-		try
-		{
-			 if(conn!=null)
-			 {
-				conn.close();
-			 }
-		}
-		catch(SQLException se)
-		{
-			out.println("<p>sorry,数据库错误</P>");
-			se.printStackTrace();
-		}
-	}
-	*/
-%>
+			catch(SQLException se)
+			{
+				//Handle errors for JDBC
+				out.println("<p>sorry,数据库错误</P>");
+				se.printStackTrace();
+			}
+			catch(Exception e)
+			{
+				//Handle errors for Class.forName
+				out.println("<p>sorry,数据库错误</P>");
+				e.printStackTrace();
+			}
+	    %>
   	 	</div>
   	 </div>
   </div>

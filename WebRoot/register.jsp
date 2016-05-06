@@ -103,7 +103,7 @@ body
 </style>
 </head>
 <body>
-	<h1 align="center">SNS社交网站注册页面</h1>
+	<h1 align="center">图书漂流系统注册页面</h1>
 	<hr>
 	<br>
 	<center>

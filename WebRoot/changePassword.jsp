@@ -84,7 +84,7 @@
   	<%@ include file="navigator.jsp" %>
   	<%@ include file="module.jsp" %>
       	<div class="changePass">
-	<center class="login">
+		<center class="login">
 		<h1 align="center">修改密码</h1>
 		<form action="checkPasswordChange.jsp" method="post" onsubmit="return check()">
 		<div>

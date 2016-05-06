@@ -15,6 +15,12 @@ if (session.isNew()||session.getAttribute("userID")==null)
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<style type="text/css">
+	
+	a
+	{ 
+		text-decoration:none;
+	}
+	
 	.navigator
 	{
 		overflow:hidden;
@@ -42,8 +48,9 @@ if (session.isNew()||session.getAttribute("userID")==null)
 	.navigator li
 	{
 		display:inline;
-		/*position:;*/
 		float:right;
+		padding:0px;
+		margin:0px;
 	}
 	.navigator a:link,.navigator a:visited
 	{
@@ -56,7 +63,16 @@ if (session.isNew()||session.getAttribute("userID")==null)
 		color:blue;
 		/*text-decoration:none;*/
 	}
-
+	
+	.navigator a.region
+	{
+		padding:0px;
+		margin:0px;
+		background-color:#505050;
+		font-color:green;
+		width:170px;
+	}
+	
 	.navigator a:hover,.navigator a:active
 	{
 		background-color:#F00;
@@ -67,17 +83,19 @@ if (session.isNew()||session.getAttribute("userID")==null)
 <div id="navigator"  class="navigator" > 
 <ul>
 	<li><a class="logout" href="logout.jsp" style="margin-right:20px;" >注销</a></li>
-	<li><a class="user" href="user.jsp"> 
-	<% 
-		if(session.getAttribute("userID")==null)
-   		{
-   			out.print("登录");
-   		}
-   		else
-   		{
-   			out.print(session.getAttribute("userID"));
-   		}	
-	%> 
-	</a> </li>
+	<li>
+		<a class="user" href="user.jsp"> 
+		<% 
+			if(session.getAttribute("userID")==null)
+   				out.print("登录");
+   			else
+   				out.print(session.getAttribute("userID"));	
+		%> 
+		</a> 
+	</li>
+	<li><a class="recommendation region" href="logout.jsp" style="margin-right:20px;" >推荐区</a></li>
+	<li><a class="ask_drift region" href="logout.jsp"  >求漂区</a></li>
+	<li><a class="put_drift region" href="logout.jsp"  >放漂区</a></li>
+	
 </ul>
 </div>

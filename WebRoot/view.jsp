@@ -87,9 +87,9 @@ try {
 						style="color:#C8C8C8;" >来句评论吧
 						</textarea>
 						<script type="text/javascript">
-						document.getElementById(<%= "textRe" +  post_id %>).value= "来句评论吧";
-						document.getElementById(<%= "textRe" +  post_id %>).style.color= "#C8C8C8";
-						alert(<%= "textRe" +  post_id %>);
+							document.getElementById(<%= "textRe" +  post_id %>).value= "来句评论吧";
+							document.getElementById(<%= "textRe" +  post_id %>).style.color= "#C8C8C8";
+							alert(<%= "textRe" +  post_id %>);
 						</script>
 						<button id='<%= "button" + post_id %>' onClick="submitReply(<%= post_id %>)" class="commet" style="display:none;">发表评论</button>
 					</div>

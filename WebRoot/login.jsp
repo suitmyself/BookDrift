@@ -70,7 +70,7 @@
 </head>
 <body>
 
-	<h1 align="center">SNS社交网站登录页面</h1>
+	<h1 align="center">图书漂流系统</h1>
 	<center class="login">
 		<form action="checkLogin.jsp" method="post" onsubmit="return check()">
 		<div>
