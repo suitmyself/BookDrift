@@ -31,7 +31,17 @@
 	
 	try
 	{
+		//stmt.executeUpdate(sql);
+		PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		ps.executeUpdate();
+		ResultSet rs = ps.getGeneratedKeys();
+		
+		rs.next();
+		String bookID = rs.getString(1);
+		
+		sql = "insert into put_drift (username, bookID) value ('"+ userID+"',"+bookID+")";
 		stmt.executeUpdate(sql);
+		
 		
 		response.sendRedirect("driftBook.jsp");
 		conn.close();
