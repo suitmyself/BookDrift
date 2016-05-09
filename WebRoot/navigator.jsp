@@ -64,12 +64,12 @@ if (session.isNew()||session.getAttribute("userID")==null)
 		/*text-decoration:none;*/
 	}
 	
-	.navigator a.region
+	.navigator a.region:link
 	{
 		padding:0px;
 		margin:0px;
 		background-color:#505050;
-		font-color:green;
+		color:white;
 		width:170px;
 	}
 	
@@ -93,9 +93,9 @@ if (session.isNew()||session.getAttribute("userID")==null)
 		%> 
 		</a> 
 	</li>
-	<li><a class="recommendation region" href="logout.jsp" style="margin-right:20px;" >推荐区</a></li>
-	<li><a class="ask_drift region" href="logout.jsp"  >求漂区</a></li>
-	<li><a class="put_drift region" href="logout.jsp"  >放漂区</a></li>
+	<li><a class="recommendation region" href="logout.jsp" style="margin-right:20px; color: white;" >推荐区</a></li>
+	<li><a class="ask_drift region" href="logout.jsp" style="color: white;" >求漂区</a></li>
+	<li><a class="put_drift region" href="logout.jsp" style="color: white;">放漂区</a></li>
 	
 </ul>
 </div>
