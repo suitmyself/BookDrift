@@ -34,7 +34,7 @@
 				session.setAttribute("userID",java.net.URLDecoder.decode(request.getParameter("userID"), "UTF-8"));
 				out.println("<h2>验证正确</h2>");
 				out.println("<p><span id='timing'>3</span>秒后返回<a href='user.jsp' >用户</a>页面！</p>");
-		    	String content=3+";URL="+"user.jsp";
+		    	String content=3+";URL="+"mainshow.jsp";
 		    	response.setHeader("REFRESH",content);
 			}
 			else
