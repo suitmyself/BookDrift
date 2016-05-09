@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2016-05-05 13:55:22
+Date: 2016-05-09 20:19:25
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -94,8 +94,8 @@ CREATE TABLE `article` (
 -- ----------------------------
 -- Records of article
 -- ----------------------------
-INSERT INTO `article` VALUES ('1', '001', '2016-05-04 22:26:56', 'test', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccdddddddddddddddddddddddddddddeeeeeeeeeeee', '10', 'what the fuck!');
-INSERT INTO `article` VALUES ('2', '002', '2016-05-04 22:27:38', 'hello', 'fff', '2', 'fff');
+INSERT INTO `article` VALUES ('1', '001', '2016-05-04 22:26:56', 'test', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbccccccccccccccccccccccdddddddddddddddddddddddddddddeeeeeeeeeeee', '20', 'what the fuck!');
+INSERT INTO `article` VALUES ('2', '002', '2016-05-04 22:27:38', 'hello', 'fff', '20', 'fff');
 
 -- ----------------------------
 -- Table structure for `ask_drift`
@@ -104,8 +104,9 @@ DROP TABLE IF EXISTS `ask_drift`;
 CREATE TABLE `ask_drift` (
   `ask_driftID` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(64) DEFAULT NULL,
+  `bookName` varchar(255) DEFAULT NULL,
   `ask_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `ask_infor` varchar(255) DEFAULT NULL,
+  `ask_infor` varchar(2550) DEFAULT NULL,
   `ask_num` int(11) DEFAULT NULL,
   PRIMARY KEY (`ask_driftID`),
   KEY `username` (`username`),
@@ -115,8 +116,8 @@ CREATE TABLE `ask_drift` (
 -- ----------------------------
 -- Records of ask_drift
 -- ----------------------------
-INSERT INTO `ask_drift` VALUES ('1', '004', '2016-05-04 22:28:14', '求求求', '1');
-INSERT INTO `ask_drift` VALUES ('2', 'suitmyself', '2016-05-04 22:28:31', 'ask ask', '2');
+INSERT INTO `ask_drift` VALUES ('1', '004', 'aaa', '2016-05-04 22:28:14', '求求求烦烦烦烦烦求求求求烦求求求烦烦烦烦烦求求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就求求求烦烦烦烦烦求求求烦构啊机构啊机构啊就', '10');
+INSERT INTO `ask_drift` VALUES ('2', 'suitmyself', 'bbb', '2016-05-04 22:28:31', 'ask ask', '10');
 
 -- ----------------------------
 -- Table structure for `book`
@@ -137,12 +138,13 @@ CREATE TABLE `book` (
   KEY `now_username` (`now_username`),
   CONSTRAINT `book_ibfk_1` FOREIGN KEY (`own_username`) REFERENCES `account` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `book_ibfk_2` FOREIGN KEY (`now_username`) REFERENCES `account` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of book
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', '99937-0-014-2', 'test', 'david', 'peking university', '2016-05-04 22:19:34', '0', '001', '001');
+INSERT INTO `book` VALUES ('1', '99937-0-014-2', 'test', 'david', 'peking university', '2016-05-04 22:19:34', '0', '001', 'davidblus');
+INSERT INTO `book` VALUES ('2', '123456987456', 'afafaf', 'blus', 'ting university', '2016-05-09 19:05:58', '0', '002', 'davidblus');
 
 -- ----------------------------
 -- Table structure for `friend_pair`
@@ -171,7 +173,7 @@ CREATE TABLE `post` (
   `ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `content` text,
   PRIMARY KEY (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of post
@@ -186,6 +188,8 @@ INSERT INTO `post` VALUES ('7', '-1', 'suitmyself', '2015-06-13 13:35:11', '闲�
 INSERT INTO `post` VALUES ('8', '-1', 'davidblus', '2016-05-04 17:15:41', 'df dfg dfg');
 INSERT INTO `post` VALUES ('9', '-1', 'davidblus', '2016-05-04 17:16:32', 'fgdfg ');
 INSERT INTO `post` VALUES ('10', '-1', 'davidblus', '2016-05-04 18:56:55', 'fafaf');
+INSERT INTO `post` VALUES ('11', '-1', 'davidblus', '2016-05-06 11:43:26', '闲来无事闷得慌，来一发状态吧');
+INSERT INTO `post` VALUES ('12', '-1', 'davidblus', '2016-05-06 11:43:36', '闲来无事闷得慌，来一发状态吧');
 
 -- ----------------------------
 -- Table structure for `put_drift`
@@ -201,12 +205,11 @@ CREATE TABLE `put_drift` (
   KEY `bookID` (`bookID`),
   CONSTRAINT `put_drift_ibfk_1` FOREIGN KEY (`username`) REFERENCES `account` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `put_drift_ibfk_2` FOREIGN KEY (`bookID`) REFERENCES `book` (`bookID`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of put_drift
 -- ----------------------------
-INSERT INTO `put_drift` VALUES ('1', 'davidblus', '2016-05-04 22:28:51', '1');
 
 -- ----------------------------
 -- Table structure for `system_message`
