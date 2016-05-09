@@ -42,7 +42,6 @@
 		sql = "insert into put_drift (username, bookID) value ('"+ userID+"',"+bookID+")";
 		stmt.executeUpdate(sql);
 		
-		
 		response.sendRedirect("driftBook.jsp");
 		conn.close();
 		stmt.close();

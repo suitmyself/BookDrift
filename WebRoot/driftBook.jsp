@@ -73,6 +73,21 @@
 	}
 	
 </style>
+<script type="text/javascript">
+    function check()
+    {
+        var bookName=document.getElementById("bookName").value;
+        var isbn=document.getElementById("isbn").value;
+        var author=document.getElementById("author").value;
+        var publiser=document.getElementById("publiser").value;
+   
+        if(bookName.length==0||isbn.length==0||author.length==0||publiser.length==0)
+        {
+                alert("存在未填项");
+                return false;
+         }
+    }
+</script>
 
 <body>
 <%@ include file="navigator.jsp" %>
@@ -83,7 +98,7 @@
 	<hr>
 	<br>
 	<center>
-		<form id="form" name="form" class="form" action="submitBook.jsp" method="POST">
+		<form id="form" name="form" class="form" action="submitBook.jsp" method="POST" onsubmit="return check()">
 			<table>
 				<tr>
 					<td>书名:</td>

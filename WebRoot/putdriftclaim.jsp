@@ -32,8 +32,23 @@ try {
 	stmt.executeUpdate(sql);
 	//System.out.println(sql);
 	// update book set state=0,now_username='david' where bookID=2;
+	
+	sql = "select * from book where bookID = " + bookID;
+	ResultSet rs = stmt.executeQuery(sql);
+	rs.next();
+	String ori_username = rs.getString("now_username");
+	
 	sql="update book set state=0,now_username='"+username+"' where bookID="+bookID;
 	stmt.executeUpdate(sql);
+	
+	sql = "insert into system_message(status,content,to_username)values(0,'"+
+                 ori_username+" receive your book!(bookID ="+bookID+")','"+username+"')";
+    stmt.executeUpdate(sql);
+    
+    sql = "insert into system_message(status,content,to_username)values(0,'"+
+                 username+" get your book!(bookID ="+bookID+")','"+ori_username+"')";
+    stmt.executeUpdate(sql);
+	
 	
 %>
 
