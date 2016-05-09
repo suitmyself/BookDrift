@@ -69,11 +69,10 @@
 		background-color:FFCCCC;
 		font-size:14px;
 		width:100%;
-		min-height:80px;
+		min-height:30px;
 		padding-left:10px;
 		padding-top:10px;
 		border-radius: 2px;
-		margin-bottom: 5px;
 	}
 
 	
@@ -101,7 +100,7 @@ try {
 					<p><strong style="font-weight: bold; color: #333; font-size:15px;">
 					&nbsp;&nbsp;<a href="askdriftshow.jsp">求漂信息:</a></strong>
 					<% int i=0; %>
-				<% for (i=0 ; rs.next() && i<2; ++i) { %>
+				<% for (i=0 ; rs.next() && i<3; ++i) { %>
 					<% String ask_infor="求漂者："+rs.getString("username")+"&nbsp;&nbsp;&nbsp;&nbsp;书名："+rs.getString("bookName")+"</br>"; %>
 					<p class="content"><%= ask_infor%></p>
 				<%
@@ -120,7 +119,7 @@ rs=stmt.executeQuery(sql);
 			<div class="showaskput">
 					<p><strong style="font-weight: bold; color: #333; font-size:15px;">
 					&nbsp;&nbsp;<a href="putdriftshow.jsp">放漂信息:</a></strong>
-				<% for (i=0 ; rs.next() && i<2; ++i) { %>
+				<% for (i=0 ; rs.next() && i<3; ++i) { %>
 					<% String put_infor="放漂者："+rs.getString("username")+"&nbsp;&nbsp;&nbsp;&nbsp;书名："+rs.getString("bookName")+"</br>"; %>
 					<p class="content"><%= put_infor%></p>
 				<%
@@ -139,7 +138,7 @@ rs=stmt.executeQuery(sql);
 			<div class="showarticle">
 					<p><strong style="font-weight: bold; color: #333; font-size:15px;">
 					&nbsp;&nbsp;<a href="articleshare.jsp">读书分享信息:</a></strong>
-				<% for (i=0 ; rs.next() && i<2; ++i) { %>
+				<% for (i=0 ; rs.next() && i<3; ++i) { %>
 					<% String put_infor="分享者："+rs.getString("username")+"&nbsp;&nbsp;&nbsp;&nbsp;书名："+rs.getString("bookName")+"</br>"; %>
 					<p class="content"><%= put_infor%></p>
 				<%
