@@ -73,7 +73,7 @@
   	<%
   	try
   	{
-  		String sql = "select * from book, user_step where username = '"+userID+"'";
+  		String sql = "select * from book, user_step where username = '"+userID+"' and book.bookID=user_step.bookID";
   		ResultSet rs = stmt.executeQuery(sql);
   		
   		if(rs.next()) 

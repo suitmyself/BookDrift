@@ -93,7 +93,7 @@ if (session.isNew()||session.getAttribute("userID")==null)
 		%> 
 		</a> 
 	</li>
-	<li><a class="recommendation region" href="articleshare.jsp" style="margin-right:20px; color: white;" >推荐区</a></li>
+	<li><a class="recommendation region" href="articleshare.jsp" style="margin-right:20px; color: white;" >读书分享区</a></li>
 	<li><a class="ask_drift region" href="askdriftshow.jsp" style="color: white;" >求漂区</a></li>
 	<li><a class="put_drift region" href="putdriftshow.jsp" style="color: white;">放漂区</a></li>
 	<li><a class="put_drift region" href="mainshow.jsp" style="color: white;">主展览区</a></li>

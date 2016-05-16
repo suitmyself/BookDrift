@@ -420,6 +420,7 @@
 <body style="background-color:#D9D9D9">
     <%@ include file="navigator.jsp" %>
   	<%@ include file="module.jsp" %>
+  	
 	<div class="postPaid">
 		<textarea id="myPost" onfocus="postOnfocus(this)" onblur="postOnblur(this)" style="color:#C8C8C8">闲来无事闷得慌，来一发状态吧</textarea>
 		<script> 
@@ -430,6 +431,15 @@
 		<button onclick="submitPost()" class="postButton">发布</button>
 	</div>
 	<div class="postBoard" id="dynamics"></div>
-
+	
+	<!-- Changed by davidblus -->
+	<!-- 
+	<a href="askdriftshow.jsp">求漂展览区</a>
+	<a href="putdriftshow.jsp">放漂展览区</a>
+	<a href="articleshare.jsp">读书分享区</a>
+	<a href="mainshow.jsp">主界面</a>
+	-->
+	 
+	 
 </body>
 </html>

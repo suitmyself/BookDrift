@@ -39,7 +39,7 @@ try {
 						&nbsp;&nbsp;<%= rs.getString("username") %></strong> &nbsp;发布放漂
 						&nbsp;&nbsp; email:	<%=rs.getString("email") %> 
 						&nbsp;&nbsp; 时间:  <i><%= rs.getString("put_time") %></i></p>
-						<% String bookinfor="书名："+rs.getString("bookName")+"</br> 作者："+rs.getString("author")+"&nbsp;&nbsp;&nbsp;&nbsp;出版社："+rs.getString("publishment")+"&nbsp;&nbsp;&nbsp;&nbsp;出版时间："+rs.getString("publish_time")+"&nbsp;&nbsp;&nbsp;&nbsp;ISBN:"+rs.getString("ISBN"); %>
+						<% String bookinfor="书名：<button type='button' onclick=\"window.location.href='bookshareinfor.jsp?bookName="+rs.getString("bookName")+"'\">"+rs.getString("bookName")+"</button></br> 作者："+rs.getString("author")+"&nbsp;&nbsp;&nbsp;&nbsp;出版社："+rs.getString("publishment")+"&nbsp;&nbsp;&nbsp;&nbsp;出版时间："+rs.getString("publish_time")+"&nbsp;&nbsp;&nbsp;&nbsp;ISBN:"+rs.getString("ISBN"); %>
 						<p class="content"><%= bookinfor %></p>
 						<button type="button" id=<%=rs.getString("put_driftID") %> onclick="changeclaim(<%=rs.getString("put_driftID") %>,<%=rs.getString("bookID") %>,'<%=userID%>')">认领</button>
 					</div>

@@ -41,6 +41,10 @@ try {
 	sql="update book set state=0,now_username='"+username+"' where bookID="+bookID;
 	stmt.executeUpdate(sql);
 	
+	//insert into user_step(username,bookID) values('davidblus',1);
+	sql="insert into user_step(username,bookID) values('"+username+"',"+bookID+")";
+	stmt.executeUpdate(sql);
+	
 	sql = "insert into system_message(status,content,to_username)values(0,'"+
                  ori_username+" receive your book!(bookID ="+bookID+")','"+username+"')";
     stmt.executeUpdate(sql);
