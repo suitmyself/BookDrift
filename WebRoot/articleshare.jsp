@@ -86,9 +86,9 @@
 	</style>
 	<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
 	<script type="text/javascript">
-	showAllaskdrift();
+	showAllaskdrift("article_score");
 	
-	function showAllaskdrift()
+	function showAllaskdrift(order)
 	{
 		var xmlhttp;
 		if (window.XMLHttpRequest) {
@@ -102,7 +102,7 @@
 				document.getElementById("showlist").innerHTML=xmlhttp.responseText;
 			}
 		}
-		xmlhttp.open("GET", "articleinfor.jsp?t=" + Math.random(), true);
+		xmlhttp.open("GET", "articleinfor.jsp?order=" + order, true);
 		xmlhttp.send();
 		
 	}
@@ -129,6 +129,9 @@
     <%@ include file="navigator.jsp" %>
   	<%@ include file="module.jsp" %>
 	<h1><center>读书分享&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center></h1>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<button onclick="showAllaskdrift('article_score')">按评分排序</button>
+	<button onclick="showAllaskdrift('sharetime')">按时间排序</button>
 	<div class="putdriftBoard" id="showlist"></div>
 
 </body>

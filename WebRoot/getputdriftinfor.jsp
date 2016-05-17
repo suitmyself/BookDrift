@@ -20,6 +20,10 @@ if (session.isNew() || userID == null)
 
 <%
 try {
+	Statement stmt2 = null;
+	stmt2 = conn.createStatement();
+	stmt2.executeQuery("SET NAMES UTF8");
+
 	//Query posts
 	/*
 	select account.username,email,put_time,put_drift.bookID,ISBN,bookName,author,publishment,publish_time,own_username,now_username 
@@ -39,7 +43,23 @@ try {
 						&nbsp;&nbsp;<%= rs.getString("username") %></strong> &nbsp;发布放漂
 						&nbsp;&nbsp; email:	<%=rs.getString("email") %> 
 						&nbsp;&nbsp; 时间:  <i><%= rs.getString("put_time") %></i></p>
-						<% String bookinfor="书名：<button type='button' onclick=\"window.location.href='bookshareinfor.jsp?bookName="+rs.getString("bookName")+"'\">"+rs.getString("bookName")+"</button></br> 作者："+rs.getString("author")+"&nbsp;&nbsp;&nbsp;&nbsp;出版社："+rs.getString("publishment")+"&nbsp;&nbsp;&nbsp;&nbsp;出版时间："+rs.getString("publish_time")+"&nbsp;&nbsp;&nbsp;&nbsp;ISBN:"+rs.getString("ISBN"); %>
+						
+						<% 
+						String bookName=rs.getString("bookName"); 
+						//select count(*) from article where article_score>=(select article_score from article where bookName='fff');
+						String sql2="select count(*) as count from article where article_score>=(select article_score from article where bookName='"+bookName+"')";
+						ResultSet rs2=stmt2.executeQuery(sql2);
+						String rank="";
+						if(rs2.next())
+						{
+							rank=rs2.getString("count");
+							if(rank.equals("0"))
+								rank="无";
+						}
+						%>
+						
+						<% String bookinfor="书名：<button type='button' onclick=\"window.location.href='bookshareinfor.jsp?bookName="+rs.getString("bookName")+"'\">"+rs.getString("bookName")+"</button>&nbsp;&nbsp;&nbsp;&nbsp;书评排名："+rank+"</br>"
+						+" 作者："+rs.getString("author")+"&nbsp;&nbsp;&nbsp;&nbsp;出版社："+rs.getString("publishment")+"&nbsp;&nbsp;&nbsp;&nbsp;出版时间："+rs.getString("publish_time")+"&nbsp;&nbsp;&nbsp;&nbsp;ISBN:"+rs.getString("ISBN"); %>
 						<p class="content"><%= bookinfor %></p>
 						<button type="button" id=<%=rs.getString("put_driftID") %> onclick="changeclaim(<%=rs.getString("put_driftID") %>,<%=rs.getString("bookID") %>,'<%=userID%>')">认领</button>
 					</div>
@@ -52,6 +72,7 @@ try {
 <%
 	rs.close();
 	stmt.close();
+	stmt2.close();
 	conn.close();
 } //try
 catch(SQLException se) {

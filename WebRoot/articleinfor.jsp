@@ -24,8 +24,8 @@ try {
 	/*
 	select username,sharetime,article_title,article_details,bookName from article order by article_score desc;
 	*/
-	
-	String sql = "select articleID,username,sharetime,article_title,article_details,bookName from article order by article_score desc;";
+	String order=request.getParameter("order");
+	String sql = "select articleID,username,sharetime,article_title,article_details,bookName from article order by "+order+" desc";
 	//System.out.println(sql);
 	ResultSet rs = stmt.executeQuery(sql);
 %>
